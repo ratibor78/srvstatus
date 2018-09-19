@@ -17,7 +17,7 @@
 
   **pip install requirements.txt**
   
-  **chmod +x ./service.py **
+  **chmod +x ./service.py**
   
   Rename **settings.ini.back** to **settings.ini**  and specifying a list of services that you need to check: 
 
