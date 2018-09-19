@@ -9,3 +9,6 @@ The script is written on python and I tried to use standart lib's so it's must b
 most Python versions and systems. 
 
 The script returns a Json format with services status information. 
+
+
+### use
