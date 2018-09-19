@@ -1,2 +1,2 @@
 [SERVICES]
-name = docker.service cups.service
+name = service1.service service2.service
