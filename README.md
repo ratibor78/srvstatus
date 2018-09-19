@@ -13,6 +13,10 @@
   The script returns a Json format with services status information. 
 
 
+## Install 
+
+  **pip install requirements.txt**
+  
   Rename **settings.ini.back** to **settings.ini**  and specifying a list of services that you need to check: 
 
 ```
