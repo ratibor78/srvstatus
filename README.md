@@ -42,7 +42,7 @@
 
 Then configure the telegraf **exec** plugin, something like this: 
 
-### You need to use latest version of Telegraf compile from github, because older versions 
+### You need to use latest version of Telegraf compiled from github, because older versions 
 ### didn't support string format in json plugin.
 
 ```
@@ -59,7 +59,7 @@ Then configure the telegraf **exec** plugin, something like this:
       "service"
     ]
 ```
-That's all, now we can create nice and pretty Grafana dashboards of system services with alerting. 
+That's all, now we can create nice and pretty Grafana dashboards for system services with alerting. 
 
 Good luck. 
 
