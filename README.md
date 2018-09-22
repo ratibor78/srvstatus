@@ -4,16 +4,30 @@
 
 ## Status of SysteD services for Telegraf+InfluxDB
 
-  Main goal for this short script is checking list of SystemD services 
-  and sending this services status with UPtime for building some Grafana dashboards. 
+  Main goal of this short script is checking list of given SystemD services 
+  and sending this services status with UP/DOWN time in to InfluxDB and Grafana dashboards. 
+  
+  The script is written on python and I tried to use standard lib's as much as possible,
+  but you still need a pip install.
+  
+  This script returns a Json format with services status coded by digits: 
+  
+  active = 1
+  reloading = 2 
+  inactive = 3
+  failed  = 4 
+  activating = 5
+  deactivating = 6 
+  
+  so you need to convert it back to string in Grafana. 
+  
+  Actualy the last Telegraf version accepts the string values in json format, but if you want 
+  to use Grafana alerting you need some digits to put it on alert graphs. 
+  
+  Also script provide a service name and time recent service status in seconds, 
+  so you can use it to build UP/DOWN time in Grafana dashboards.
 
-  The script is written on python and I tried to use standart lib's so it's must be ok with 
-  most Python versions and systems. 
-
-  The script returns a Json format with services status information. 
-
-
-## Install 
+## Installation
 
   **pip install requirements.txt**
   
@@ -27,6 +41,9 @@
 ```
 
 Then configure the telegraf **exec** plugin, something like this: 
+
+### You need to use latest version of Telegraf compile from github, because older versions 
+### didn't support string format in json plugin.
 
 ```
     [[inputs.exec]]
@@ -42,7 +59,7 @@ Then configure the telegraf **exec** plugin, something like this:
       "service"
     ]
 ```
-After that use this for creating you nice and pretty Grafana dashboards.
+That's all, now we can create nice and pretty Grafana dashboards of system services with alerting. 
 
 Good luck. 
 
