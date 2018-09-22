@@ -11,14 +11,14 @@
   but you still need a pip install.
   
   This script returns a Json format with services status coded by digits: 
-  
+```
   active = 1
   reloading = 2 
   inactive = 3
   failed  = 4 
   activating = 5
   deactivating = 6 
-  
+```  
   so you need to convert it back to string in Grafana. 
   
   Actualy the last Telegraf version accepts the string values in json format, but if you want 
