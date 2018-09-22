@@ -1,1 +1,2 @@
 configparser==3.5.0
+parsedatetime==2.4

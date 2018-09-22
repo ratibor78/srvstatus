@@ -10,6 +10,8 @@ import re
 import json
 import subprocess
 import configparser
+import parsedatetime
+from datetime import datetime
 
 
 def service_stat(service):
@@ -17,7 +19,7 @@ def service_stat(service):
     output, err = out.communicate()
 
     service_regx = r"Loaded:.*\/(.*service);"
-    status_regx = r"Active:(.*) since (.*);(.*)"
+    status_regx = r"Active:(.*) ([^ ]+) since (.*);(.*)"
 
     service_status = {}
 
@@ -30,9 +32,27 @@ def service_stat(service):
         # Match string like: Active: inactive (dead) since Wed 2018-09-19 10:57:30 EEST; 4min 26s ago  # NOQA
         status_search = re.search(status_regx, line)
         if status_search:
-            service_status['status'] = status_search.group(1).strip()
-            service_status['since'] = status_search.group(2).strip()
-            service_status['status_time'] = status_search.group(3).strip()
+            status = status_search.group(1).strip()
+            if status == 'active':
+                service_status['status'] = '1'
+            elif status == 'reloading':
+                service_status['status'] = '2'
+            elif status == 'inactive':
+                service_status['status'] = '3'
+            elif status == 'failed':
+                service_status['status'] = '4'
+            elif status == 'activating':
+                service_status['status'] = '5'
+            elif status == 'deactivating':
+                service_status['status'] = '6'
+
+            # Get and convert "since" date in to seconds
+            since_date = status_search.group(3).strip()
+            cal = parsedatetime.Calendar()
+            time_struct, parse_status = cal.parse(since_date)
+            delta = datetime.now() - datetime(*time_struct[:6])
+            seconds = delta.total_seconds()
+            service_status['status_time'] = str(int(seconds))
             break
 
     return service_status
