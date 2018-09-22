@@ -34,17 +34,17 @@ def service_stat(service):
         if status_search:
             status = status_search.group(1).strip()
             if status == 'active':
-                service_status['status'] = '1'
+                service_status['status'] = 1
             elif status == 'reloading':
-                service_status['status'] = '2'
+                service_status['status'] = 2
             elif status == 'inactive':
-                service_status['status'] = '3'
+                service_status['status'] = 3
             elif status == 'failed':
-                service_status['status'] = '4'
+                service_status['status'] = 4
             elif status == 'activating':
-                service_status['status'] = '5'
+                service_status['status'] = 5
             elif status == 'deactivating':
-                service_status['status'] = '6'
+                service_status['status'] = 6
 
             # Get and convert "since" date in to seconds
             since_date = status_search.group(3).strip()
@@ -52,7 +52,7 @@ def service_stat(service):
             time_struct, parse_status = cal.parse(since_date)
             delta = datetime.now() - datetime(*time_struct[:6])
             seconds = delta.total_seconds()
-            service_status['status_time'] = str(int(seconds))
+            service_status['status_time'] = int(seconds)
             break
 
     return service_status
