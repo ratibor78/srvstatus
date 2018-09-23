@@ -2,7 +2,7 @@
 
 ## version 0.1
 
-## Status of SysteD services using Telegraf+InfluxDB+Grafana
+## Getting status of SysteD services using Telegraf+InfluxDB+Grafana
 
 ![Alt text](https://github.com/ratibor78/servicestat/blob/master/services_grafana.png?raw=true "Grafana dashboard example")
 ![Alt text](https://github.com/ratibor78/servicestat/blob/master/services_grafana1.png?raw=true "Grafana dashboard example")
