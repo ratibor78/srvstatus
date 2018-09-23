@@ -33,17 +33,14 @@
   
   **chmod +x ./service.py**
   
-  Rename **settings.ini.back** to **settings.ini**  and specifying a list of services that you need to check: 
+  Rename **settings.ini.back** to **settings.ini**  and specify a list of services that you need to check: 
 
 ```
    [SERVICES]
     name = docker.service nginx.service
 ```
 
-Then configure the telegraf **exec** plugin, something like this: 
-
-### You need to use latest version of Telegraf compiled from github, because older versions 
-### didn't support string format in json plugin.
+Then configure the Telegraf **exec** plugin like this: 
 
 ```
     [[inputs.exec]]
