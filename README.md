@@ -24,11 +24,11 @@
 ```  
   so you need to convert it back to string in Grafana. 
   
-  Actualy the last Telegraf version accepts the string values in json format, but if you want 
-  to use Grafana alerting you need some digits to put it on alert graphs. 
+  Actually the last Telegraf version accepts the string values in json format, 
+  but if you want to use Grafana alerting you still need numeric format to put it on alert graphs. 
   
   Also script provide a service name and time recent service status in seconds, 
-  so you can use it to build UP/DOWN time in Grafana dashboards.
+  so you can use it in Grafana dashboards.
 
 ## Installation
 
