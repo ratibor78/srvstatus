@@ -18,7 +18,7 @@ def service_stat(service):
     out = subprocess.Popen(["systemctl", "status", service], stdout=subprocess.PIPE) # NOQA
     output, err = out.communicate()
 
-    service_regx = r"Loaded:.*\/(.*service);"
+    service_regx = r"Loaded:.*\/([^ ]*);"
     status_regx = r"Active:(.*) since (.*);(.*)"
     status_regx_fail = r"Active:(.*) ([^ ]+) since (.*);(.*)"
 
