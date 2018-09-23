@@ -5,6 +5,8 @@
 ## Status of SysteD services using Telegraf+InfluxDB+Grafana
 
 ![Alt text](https://github.com/ratibor78/servicestat/blob/master/services_grafana.png?raw=true "Grafana dashboard example")
+![Alt text](https://github.com/ratibor78/servicestat/blob/master/services_grafana1.png?raw=true "Grafana dashboard example")
+
 
 
   Main goal of this short script is checking list of given SystemD services 
