@@ -1,8 +1,11 @@
-# Servicestat
+# Servicestat 
 
 ## version 0.1
 
-## Status of SysteD services for Telegraf+InfluxDB
+## Status of SysteD services using Telegraf+InfluxDB+Grafana
+
+![Alt text](https://github.com/ratibor78/servicestat/blob/master/services_grafana.png?raw=true "Optional Title")
+
 
   Main goal of this short script is checking list of given SystemD services 
   and sending this services status with UP/DOWN time in to InfluxDB and Grafana dashboards. 
