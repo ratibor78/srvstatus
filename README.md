@@ -9,7 +9,7 @@
 
 
 
-  Main goal of this short script is checking list of given SystemD services 
+  Main goal of this easy script is checking list of given SystemD services 
   and sending this services status with UP/DOWN time in to InfluxDB and Grafana dashboards. 
   
   The script is written on python and I tried to use standard lib's as much as possible,
