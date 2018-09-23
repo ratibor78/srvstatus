@@ -1,4 +1,4 @@
-# Servicestat 
+# SRVSTATUS
 
 ## version 0.1
 
