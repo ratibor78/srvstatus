@@ -63,3 +63,9 @@ That's all, now we can create nice and pretty Grafana dashboards for system serv
 
 Good luck. 
 
+License
+----
+
+MIT
+
+**Free Software, Hell Yeah!**
