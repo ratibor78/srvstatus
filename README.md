@@ -29,6 +29,8 @@
   
   Also script provide a service name and time recent service status in seconds, 
   so you can use it in Grafana dashboards.
+  
+  You can find the Grafana dashboard example in service_status.json file or on grafana.com:https://grafana.com/dashboards/8348
 
 ## Installation
 
