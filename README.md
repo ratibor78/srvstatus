@@ -34,9 +34,12 @@
 
 ## Installation
 
-  **pip install -r requirements.txt**
-  
-  **chmod +x ./service.py**
+```
+$ cd srvstatus
+$ virtualenv venv && source venv/bin/activate
+$ pip install -r requirements.txt
+$ chmod +x ./service.py
+```
   
   Rename **settings.ini.back** to **settings.ini**  and specify a list of services that you need to check: 
 
