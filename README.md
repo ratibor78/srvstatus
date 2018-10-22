@@ -54,7 +54,7 @@ Then configure the Telegraf **exec** plugin like this:
     [[inputs.exec]]
 
     commands = [
-     "/opt/telegraf/service.py"
+     "/opt/srvstatus/service.py"
     ]
 
     timeout = "5s"
