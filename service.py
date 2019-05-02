@@ -23,10 +23,13 @@ def service_stat(service):
     status_regx_fail = r"Active:(.*) ([^ ]+) since (.*);(.*)"
 
     service_status = {}
-
+    output = output.decode("utf-8")
     for line in output.splitlines():
         # Match string like: name.service - Some Application Decription
-        service_search = re.search(service_regx, line)
+        try:
+            service_search = re.search(service_regx, line)
+        except Exception as er:
+            continue
         if service_search:
             service_status['service'] = service_search.group(1)
             continue
