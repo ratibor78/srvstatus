@@ -35,7 +35,8 @@
 ## Installation
 
 ```
-$ cd srvstatus
+$ cd /opt && git clone https://github.com/ratibor78/srvstatus.git
+$ cd /opt/srvstatus
 $ virtualenv venv && source venv/bin/activate
 $ pip install -r requirements.txt
 $ chmod +x ./service.py
@@ -54,7 +55,7 @@ Then configure the Telegraf **exec** plugin like this:
     [[inputs.exec]]
 
     commands = [
-     "/opt/srvstatus/service.py"
+     "/opt/srvstatus/venv/bin/python /opt/srvstatus/service.py"
     ]
 
     timeout = "5s"
