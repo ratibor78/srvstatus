@@ -14,8 +14,11 @@ import parsedatetime
 from datetime import datetime
 
 
-def service_stat(service):
-    out = subprocess.Popen(["systemctl", "status", service], stdout=subprocess.PIPE) # NOQA
+def service_stat(service, user=False):
+    if user:
+        out = subprocess.Popen(["systemctl", "--user", "status", service], stdout=subprocess.PIPE)  # NOQA
+    else:
+        out = subprocess.Popen(["systemctl", "status", service], stdout=subprocess.PIPE) # NOQA
     output, err = out.communicate()
 
     service_regx = r"Loaded:.*\/([^ ]*);"
@@ -74,10 +77,16 @@ if __name__ == '__main__':
 
         services = config.get('SERVICES', 'name').split()
 
+        user_services = []
+        if config.has_section('USER_SERVICES'):
+            user_services = config.get('USER_SERVICES', 'name').split()
+
         # Run loop with service63s
         output = []
         for name in services:
             output.append(service_stat(name))
+        for name in user_services:
+            output.append(service_stat(name, True))
         print(json.dumps(output))
 
     try:
