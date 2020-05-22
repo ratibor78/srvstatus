@@ -48,6 +48,12 @@ $ chmod +x ./service.py
    [SERVICES]
     name = docker.service nginx.service
 ```
+  You can also add your own **user services** list:
+
+```
+   [USER_SERVICES]
+    name = syncthing.service
+```
 
 Then configure the Telegraf **exec** plugin like this: 
 
