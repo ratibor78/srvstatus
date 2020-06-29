@@ -42,9 +42,11 @@ def service_stat(service, user=False):
 
         if status_search:
             status = status_search.group(1).strip()
-            status_fail = status_search_f.group(1).strip()
+            status_fail = status_search_f.group(1).strip().split()[0]
             if status == 'active (running)':
                 service_status['status'] = 1
+            elif status == 'active (existed)':
+                service_status['status'] = 2
             elif status == 'inactive (dead)':
                 service_status['status'] = 3
             elif status_fail == 'failed':
