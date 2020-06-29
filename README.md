@@ -17,10 +17,11 @@
   
   This script returns a Json format with services status coded by digits: 
 ```
-  active (running) = 1 
+  active (running) = 1
+  active (existed) = 2
   inactive (dead) = 3
-  failed  = 4 
-  no match = 0 
+  failed  = 4
+  no match = 0
 ```  
   so you need to convert it back to string in Grafana. 
   
