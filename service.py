@@ -1,6 +1,3 @@
-#! /usr/bin/env python
-
-
 # Getting SystemD services status and uptime
 # Alexey Nizhegolenko 2018
 
