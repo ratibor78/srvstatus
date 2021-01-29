@@ -1,8 +1,6 @@
-#! /usr/bin/env python
-
-
 # Getting SystemD services status and uptime
 # Alexey Nizhegolenko 2018
+# 2021 revrited with some fixes and for the Python3
 
 
 import os
@@ -16,9 +14,9 @@ from datetime import datetime
 
 def service_stat(service, user=False):
     if user:
-        out = subprocess.Popen(["systemctl", "--user", "status", service], stdout=subprocess.PIPE)  # NOQA
+        out = subprocess.Popen(["systemctl", "--user", "status", service], stdout=subprocess.PIPE, stderr=subprocess.DEVNULL)  # NOQA
     else:
-        out = subprocess.Popen(["systemctl", "status", service], stdout=subprocess.PIPE) # NOQA
+        out = subprocess.Popen(["systemctl", "status", service], stdout=subprocess.PIPE, stderr=subprocess.DEVNULL) # NOQA
     output, err = out.communicate()
 
     service_regx = r"Loaded:.*\/([^ ]*);"
@@ -31,7 +29,7 @@ def service_stat(service, user=False):
         # Match string like: name.service - Some Application Decription
         try:
             service_search = re.search(service_regx, line)
-        except Exception as er:
+        except Exception:
             continue
         if service_search:
             service_status['service'] = service_search.group(1)
@@ -45,7 +43,7 @@ def service_stat(service, user=False):
             status_fail = status_search_f.group(1).strip().split()[0]
             if status == 'active (running)':
                 service_status['status'] = 1
-            elif status == 'active (existed)':
+            elif status == 'active (exited)':
                 service_status['status'] = 2
             elif status == 'inactive (dead)':
                 service_status['status'] = 3
@@ -86,9 +84,15 @@ if __name__ == '__main__':
         # Run loop with service63s
         output = []
         for name in services:
-            output.append(service_stat(name))
+            if service_stat(name) == {}:
+                pass
+            else:
+                output.append(service_stat(name))
         for name in user_services:
-            output.append(service_stat(name, True))
+            if service_stat(name, True) == {}:
+                pass
+            else:
+                output.append(service_stat(name, True))
         print(json.dumps(output))
 
     try:
