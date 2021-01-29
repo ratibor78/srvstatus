@@ -39,7 +39,7 @@ but you still need run pip install.
 
   You can find the Grafana dashboard example in service_status.json file or on grafana.com:https://grafana.com/dashboards/8348
 
-  There are also a very pretty Grafana dashboard example https://grafana.com/grafana/dashboards/13309 from @b4b857f6ee
+  There are also a very pretty Grafana dashboard example https://grafana.com/grafana/dashboards/13309 from https://github.com/b4b857f6ee
 
 ## Installation
 
