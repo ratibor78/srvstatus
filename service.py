@@ -22,6 +22,8 @@ def service_stat(service, user=False):
     service_regx = r"Loaded:.*\/([^ ]*);"
     status_regx = r"Active:(.*) since (.*);(.*)"
     status_regx_fail = r"Active:(.*) ([^ ]+) since (.*);(.*)"
+    status_regx_disabled = r"Active:(.*)"
+    status_regx_disabled_fail = r"Active:(.*) ([^ ]+)"
 
     service_status = {}
     output = output.decode("utf-8")
@@ -37,6 +39,8 @@ def service_stat(service, user=False):
         # Match string like: Active: inactive (dead) since Wed 2018-09-19 10:57:30 EEST; 4min 26s ago  # NOQA
         status_search = re.search(status_regx, line)
         status_search_f = re.search(status_regx_fail, line)
+        status_search_disabled = re.search(status_regx_disabled, line)
+        status_search_disabled_f = re.search(status_regx_disabled_fail, line)
 
         if status_search:
             status = status_search.group(1).strip()
@@ -59,6 +63,24 @@ def service_stat(service, user=False):
             delta = datetime.now() - datetime(*time_struct[:6])
             seconds = delta.total_seconds()
             service_status['status_time'] = int(seconds)
+            break
+
+        if status_search_disabled:
+            status = status_search_disabled.group(1).strip()
+            status_fail = status_search_disabled_f.group(1).strip().split()[0]
+            if status == 'active (running)':
+                service_status['status'] = 1
+            elif status == 'active (exited)':
+                service_status['status'] = 2
+            elif status == 'inactive (dead)':
+                service_status['status'] = 3
+            elif status_fail == 'failed':
+                service_status['status'] = 4
+            else:
+                service_status['status'] = 0
+
+            # There no "since" date to second so send 0
+            service_status['status_time'] = 0
             break
 
     return service_status
